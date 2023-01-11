@@ -70,4 +70,4 @@ app.set("view engine", "handlebars")
 
 // Start the app.
 sequelize.sync({ force: false })
-.then( () => app.listen( PORT, () => console.log(`Listening at http://localhost:${PORT}! 🚀`) ) )
+	.then( () => app.listen( PORT, () => console.log(`Listening at http://localhost:${PORT}! 🚀`) ) )
