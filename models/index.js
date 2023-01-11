@@ -1,7 +1,7 @@
 // Import the models.
-const User = require("./User")
-const Post = require("./Post")
-const Comment = require("./Comment")
+const User = require("./definitions/User")
+const Post = require("./definitions/Post")
+const Comment = require("./definitions/Comment")
 
 // User-to-Post relationship.
 User.hasMany(Post, {

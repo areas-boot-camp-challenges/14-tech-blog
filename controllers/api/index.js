@@ -2,9 +2,13 @@
 const apiRouter = require("express").Router()
 
 // API routes.
-// todo, e.g. const userRoutes = require("./userRoutes")
+const userRoutes = require("./definitions/userRoutes")
+// const postRoutes = require("./definitions/postRoutes")
+// const commentRoutes = require("./definitions/commentRoutes")
 
 // Use the API routes.
-// todo, e.g. apiRouter.use("/user", userRoutes)
+apiRouter.use("/user", userRoutes)
+// apiRouter.use("/post", postRoutes)
+// apiRouter.use("/post/comment", commentRoutes)
 
 module.exports = apiRouter
