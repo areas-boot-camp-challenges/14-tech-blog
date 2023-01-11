@@ -6,7 +6,7 @@ const apiRoutes = require("./api")
 const htmlRoutes = require("./html")
 
 // Set up the routes.
-mainRouter.use('/', htmlRoutes)
-mainRouter.use('/api', apiRoutes)
+mainRouter.use("/", htmlRoutes)
+mainRouter.use("/api", apiRoutes)
 
 module.exports = mainRouter
