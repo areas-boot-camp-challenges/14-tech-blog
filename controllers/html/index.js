@@ -1,8 +1,8 @@
 // Dependencies.
-const pageRouter = require("express").Router()
+const htmlRouter = require("express").Router()
 
 // GET / route (render the home page).
-pageRouter.get("/", async (req, res) => {
+htmlRouter.get("/", async (req, res) => {
   try {
     res.render("home")
   } catch (err) {
@@ -10,4 +10,4 @@ pageRouter.get("/", async (req, res) => {
   }
 })
 
-module.exports = pageRouter
+module.exports = htmlRouter
