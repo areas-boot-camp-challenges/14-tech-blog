@@ -2,7 +2,7 @@
 const Sequelize = require("sequelize")
 require("dotenv").config()
 
-// Use Sequelize to set up a connection to the database.
+// Set up a connection to the database.
 let sequelize
 if (process.env.JAWSDB_URL) {
 	// Heroku.

@@ -1,36 +1,36 @@
 // Import the models.
-const User = require("./definitions/User")
-const Post = require("./definitions/Post")
-const Comment = require("./definitions/Comment")
+const User = require("./User")
+const Post = require("./Post")
+const Comment = require("./Comment")
 
 // User-to-Post relationship.
 User.hasMany(Post, {
-	foreignKey: "userId",
+	foreignKey: "user_id",
 	onDelete: "CASCADE",
 })
 
 Post.belongsTo(User, {
-	foreignKey: "postAuthorId",
+	foreignKey: "user_id",
 })
 
 // User-to-Comment relationship.
 User.hasMany(Comment, {
-	foreignKey: "userId",
+	foreignKey: "user_id",
 	onDelete: "CASCADE",
 })
 
 Comment.belongsTo(User, {
-	foreignKey: "commentAuthorId",
+	foreignKey: "user_id",
 })
 
 // Post-to-Comment relationship.
 Post.hasMany(Comment, {
-	foreignKey: "postId",
+	foreignKey: "post_id",
 	onDelete: "CASCADE",
 })
 
 Comment.belongsTo(Post, {
-	foreignKey: "postId",
+	foreignKey: "post_id",
 })
 
 module.exports = { User, Post, Comment }

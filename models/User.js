@@ -3,7 +3,7 @@ const { Model, DataTypes } = require("sequelize")
 const bcrypt = require("bcrypt")
 
 // Database.
-const sequelize = require("../../config/connection")
+const sequelize = require("../config/connection")
 
 // Set up the model.
 class User extends Model {
@@ -17,19 +17,24 @@ class User extends Model {
 // Define the model.
 User.init(
 	{
-		userId: {
+		user_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		firstName: {
+		display_name: {
 			type: DataTypes.STRING,
 			allowNull: false,
+			unique: true,
 		},
-		lastName: {
+		first_name: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
+		},
+		last_name: {
+			type: DataTypes.STRING,
+			allowNull: true,
 		},
 		email: {
 			type: DataTypes.STRING,
@@ -61,9 +66,8 @@ User.init(
 		sequelize,
 		timestamps: false,
 		freezeTableName: true,
-		underscored: false,
+		underscored: true,
 		modelName: "User",
-		tableName: "User",
 	},
 )
 
