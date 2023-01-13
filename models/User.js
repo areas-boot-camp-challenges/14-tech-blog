@@ -26,7 +26,6 @@ User.init(
 		displayName: {
 			type: DataTypes.STRING,
 			allowNull: true,
-			unique: true,
 		},
 		firstName: {
 			type: DataTypes.STRING,
