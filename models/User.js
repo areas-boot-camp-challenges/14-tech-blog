@@ -17,22 +17,22 @@ class User extends Model {
 // Define the model.
 User.init(
 	{
-		user_id: {
+		userId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		display_name: {
+		displayName: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 			unique: true,
 		},
-		first_name: {
+		firstName: {
 			type: DataTypes.STRING,
 			allowNull: true,
 		},
-		last_name: {
+		lastName: {
 			type: DataTypes.STRING,
 			allowNull: true,
 		},
@@ -54,13 +54,13 @@ User.init(
 	},
 	{
 		hooks: {
-			beforeCreate: async (newUser) => {
-				newUser.password = await bcrypt.hash(newUser.password, 10)
-				return newUser
+			beforeCreate: async (user) => {
+				user.password = await bcrypt.hash(user.password, 10)
+				return user
 			},
-			beforeUpdate: async (updatedUser) => {
-				updatedUser.password = await bcrypt.hash(updatedUser.password, 10)
-				return updatedUser
+			beforeUpdate: async (user) => {
+				user.password = await bcrypt.hash(user.password, 10)
+				return user
 			},
 		},
 		sequelize,

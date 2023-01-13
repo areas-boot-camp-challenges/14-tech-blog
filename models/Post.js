@@ -10,13 +10,13 @@ class Post extends Model {}
 // Define the model.
 Post.init(
 	{
-		post_id: {
+		postId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		post_title: {
+		postTitle: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
@@ -24,7 +24,7 @@ Post.init(
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-		post_date: {
+		postDate: {
 			type: DataTypes.DATE,
 			allowNull: false,
 		},

@@ -10,11 +10,11 @@ class Comment extends Model {}
 // Define the model.
 Comment.init(
 	{
-		post_id: {
+		postId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
-		comment_id: {
+		commentId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
@@ -24,11 +24,11 @@ Comment.init(
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-		comment_date: {
+		commentDate: {
 			type: DataTypes.DATE,
 			allowNull: false,
 		},
-		user_id: {
+		userId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},

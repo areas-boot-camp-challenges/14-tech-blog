@@ -1,9 +1,9 @@
 [
   {
-    "user_id": 1,
-    "display_name": "christianareas",
-    "first_name": "Christian",
-    "last_name": "Areas",
+    "userId": 1,
+    "displayName": "christianareas",
+    "firstName": "Christian",
+    "lastName": "Areas",
     "email": "me@areas.me",
     "password": "password"
   }

@@ -7,8 +7,8 @@ const postRoutes = require("./postRoutes")
 const commentRoutes = require("./commentRoutes")
 
 // Use the API routes.
-apiRouter.use("/user", userRoutes)
-apiRouter.use("/post", postRoutes)
-apiRouter.use("/post/comment", commentRoutes)
+apiRouter.use("/", userRoutes)
+apiRouter.use("/", postRoutes)
+apiRouter.use("/", commentRoutes)
 
 module.exports = apiRouter

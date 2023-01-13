@@ -55,13 +55,13 @@ const sequelize = require("./config/connection")
 const app = express()
 const PORT = process.env.PORT || 3030
 
-// Set up the routes.
-app.use(routes)
-
 // Set up the middleware.
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "public")))
+
+// Set up the routes.
+app.use(routes)
 
 // Set up Handlebars.
 const hbs = handlebars.create()

@@ -2,10 +2,10 @@
 const postRouter = require("express").Router()
 
 // Import the models.
-// const { Post } = require("../../models/Post")
+// const { Post } = require("../../models")
 
 // POST /api/post (publishPost).
-postRouter.post("/", async (req, res) => {
+postRouter.post("/post", async (req, res) => {
 	try {
 		res.status(200).json("So far, so good!")
 	} catch (err) {
@@ -13,8 +13,8 @@ postRouter.post("/", async (req, res) => {
 	}
 })
 
-// GET /api/post/:id (getPost).
-postRouter.get("/:id", async (req, res) => {
+// GET /api/post/:post (getPost).
+postRouter.get("/post/:post", async (req, res) => {
 	try {
 		res.status(200).json("So far, so good!")
 	} catch (err) {
@@ -22,8 +22,8 @@ postRouter.get("/:id", async (req, res) => {
 	}
 })
 
-// PATCH /api/post/:id (editPost).
-postRouter.patch("/:id", async (req, res) => {
+// PATCH /api/post/:post (editPost).
+postRouter.patch("/post/:post", async (req, res) => {
 	try {
 		res.status(200).json("So far, so good!")
 	} catch (err) {
@@ -31,8 +31,17 @@ postRouter.patch("/:id", async (req, res) => {
 	}
 })
 
-// DELETE /api/post/:id (deletePost).
-postRouter.delete("/:id", async (req, res) => {
+// DELETE /api/post/:post (deletePost).
+postRouter.delete("/post/:post", async (req, res) => {
+	try {
+		res.status(200).json("So far, so good!")
+	} catch (err) {
+		res.status(500).json(err)
+	}
+})
+
+// GET /api/posts (getPosts).
+postRouter.get("/posts", async (req, res) => {
 	try {
 		res.status(200).json("So far, so good!")
 	} catch (err) {

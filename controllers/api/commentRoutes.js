@@ -2,10 +2,10 @@
 const commentRouter = require("express").Router()
 
 // Import the models.
-// const { Comment } = require("../../models/Comment")
+// const { Comment } = require("../../models")
 
-// POST /api/post/comment (publishComment).
-commentRouter.post("/", async (req, res) => {
+// POST /api/post/:post/comment (publishComment).
+commentRouter.post("/post/:post/comment", async (req, res) => {
 	try {
 		res.status(200).json("So far, so good!")
 	} catch (err) {
@@ -13,8 +13,8 @@ commentRouter.post("/", async (req, res) => {
 	}
 })
 
-// GET /api/post/comment/:id (getComment).
-commentRouter.get("/:id", async (req, res) => {
+// GET /api/post/:post/comment/:comment (getComment).
+commentRouter.get("/post/:post/comment/:comment", async (req, res) => {
 	try {
 		res.status(200).json("So far, so good!")
 	} catch (err) {
@@ -22,8 +22,8 @@ commentRouter.get("/:id", async (req, res) => {
 	}
 })
 
-// PATCH /api/post/comment/:id (editComment).
-commentRouter.patch("/:id", async (req, res) => {
+// PATCH /api/post/:post/comment/:comment (editComment).
+commentRouter.patch("/post/:post/comment/:comment", async (req, res) => {
 	try {
 		res.status(200).json("So far, so good!")
 	} catch (err) {
@@ -31,8 +31,17 @@ commentRouter.patch("/:id", async (req, res) => {
 	}
 })
 
-// DELETE /api/post/comment/:id (deleteComment).
-commentRouter.delete("/:id", async (req, res) => {
+// DELETE /api/post/:post/comment/:comment (deleteComment).
+commentRouter.delete("/post/:post/comment/:comment", async (req, res) => {
+	try {
+		res.status(200).json("So far, so good!")
+	} catch (err) {
+		res.status(500).json(err)
+	}
+})
+
+// GET /api/post/:post/comments (getComments).
+commentRouter.get("/post/:post/comments", async (req, res) => {
 	try {
 		res.status(200).json("So far, so good!")
 	} catch (err) {
