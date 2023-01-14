@@ -30,6 +30,11 @@ userRouter.post("/user", async (req, res) => {
 	try {
 		// Create the user.
 		const newUser = await User.create(req.body)
+		// Create a session.
+		req.session.save( () => {
+			req.session.userId = user.userId
+			req.session.signedIn = true
+		})
 		// Return the user.
 		const user = await searchForUser(newUser.userId)
 		res.status(200).json(user)
@@ -84,7 +89,14 @@ userRouter.post("/user/sign-in", async (req, res) => {
 // POST /api/user/sign-out (signOutUser).
 userRouter.post("/user/sign-out", async (req, res) => {
 	try {
-		res.status(200).json("So far, so good!")
+		// If there’s a session, delete it. Else, return a 404 message.
+		if (req.session.signedIn) {
+			req.session.destroy( () => {
+				res.status(204).end()
+			})
+		} else {
+			res.status(404).end()
+		}	
 	} catch (err) {
 		res.status(500).json(err)
 	}

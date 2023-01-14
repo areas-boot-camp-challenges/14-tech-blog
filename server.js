@@ -66,7 +66,7 @@ const routes = require("./controllers")
 const sess = {
 	secret: process.env.EXPRESS_SECRET,
 	cookie: {
-		maxAge: 300000,
+		maxAge: 300000, // ** miliseconds?
 		httpOnly: true,
 		secure: false,
 		sameSite: "strict",
@@ -82,12 +82,10 @@ const sess = {
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "public")))
+app.use(session(sess))
 
 // Set up the routes.
 app.use(routes)
-
-// Set up session management.
-app.use(session(sess))
 
 // Start the app.
 sequelize.sync({ force: false })
