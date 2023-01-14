@@ -1,7 +1,7 @@
 // Dependencies.
 const userRouter = require("express").Router()
 
-// Import the models.
+// Models.
 const { User } = require("../../../models")
 
 // Search for a user.
@@ -58,7 +58,7 @@ userRouter.get("/user/:userId", async (req, res) => {
 userRouter.patch("/user/:userId", async (req, res) => {
 	try {
 		// Update the user.
-		await User.update(req.body, { where: { userId: req.params.userId }, individualHooks: true })
+		await User.update(req.body, { where: { "userId": req.params.userId }, individualHooks: true })
 		// Search for the user.
 		const user = await searchForUser(req.params.userId)
 		// If the user’s found, return the user. Else, return a 404 message.

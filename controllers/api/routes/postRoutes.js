@@ -1,7 +1,7 @@
 // Dependencies.
 const postRouter = require("express").Router()
 
-// Import the models.
+// Models.
 const { Post } = require("../../../models")
 
 // Search for a post.
@@ -51,7 +51,7 @@ postRouter.get("/post/:postId", async (req, res) => {
 postRouter.patch("/post/:postId", async (req, res) => {
 	try {
 		// Update the post.
-		await Post.update(req.body, { where: { postId: req.params.postId }, individualHooks: true })
+		await Post.update(req.body, { where: { "postId": req.params.postId }, individualHooks: true })
 		// Search for the post.
 		const post = await searchForPost(req.params.postId)
 		// If the post’s found, return the post. Else, return a 404 message.

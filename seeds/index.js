@@ -1,10 +1,10 @@
 // Database.
 const sequelize = require("../config/connection")
 
-// Import the models.
+// Models.
 const { User, Post, Comment } = require("../models")
 
-// Import the seed data.
+// Seed data.
 const userData = require("./userData.json")
 const postData = require("./postData.json")
 const commentData = require("./commentData.json")
