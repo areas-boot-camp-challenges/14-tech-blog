@@ -42,8 +42,10 @@
 
 // Dependencies.
 const express = require("express")
-const handlebars = require("express-handlebars")
+const session = require("express-session")
+const SequelizeStore = require("connect-session-sequelize")(session.Store)
 const path = require("path")
+const handlebars = require("express-handlebars")
 
 // App.
 const app = express()
@@ -60,6 +62,22 @@ app.set("view engine", "handlebars")
 // Controllers.
 const routes = require("./controllers")
 
+// Session management.
+const sess = {
+	secret: process.env.EXPRESS_SECRET,
+	cookie: {
+		maxAge: 300000,
+		httpOnly: true,
+		secure: false,
+		sameSite: "strict",
+	},
+	resave: false,
+	saveUninitialized: true,
+	store: new SequelizeStore({
+		db: sequelize,
+	}),
+}
+
 // Middleware.
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -67,6 +85,9 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // Set up the routes.
 app.use(routes)
+
+// Set up session management.
+app.use(session(sess))
 
 // Start the app.
 sequelize.sync({ force: false })
