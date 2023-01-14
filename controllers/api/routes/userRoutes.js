@@ -4,6 +4,7 @@ const userRouter = require("express").Router()
 // Import the models.
 const { User } = require("../../../models")
 
+// Search for a user.
 const searchForUser = async (userId) => {
 	const user = await User.findOne({
 		attributes: [
@@ -46,7 +47,7 @@ userRouter.get("/user/:userId", async (req, res) => {
 		if (user) {
 			res.status(200).json(user)
 		} else {
-			res.status(404).json("User not found.")	
+			res.status(404).json(`User ${req.params.userId} not found.`)
 		}
 	} catch (err) {
 		res.status(500).json(err)
@@ -61,10 +62,10 @@ userRouter.patch("/user/:userId", async (req, res) => {
 		// Search for the user.
 		const user = await searchForUser(req.params.userId)
 		// If the user’s found, return the user. Else, return a 404 message.
-		if (user) {	
+		if (user) {
 			res.status(200).json(user)
 		} else {
-			res.status(404).json("User not found.")	
+			res.status(404).json(`User ${req.params.userId} not found.`)
 		}
 	} catch (err) {
 		res.status(500).json(err)
