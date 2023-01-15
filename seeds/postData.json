@@ -1,0 +1,9 @@
+[
+	{
+    "postId": 1,
+    "postTitle": "Hello, World!",
+		"post": "I am a post.",
+		"postDate": "2022-01-18 12:00:00",
+		"userId": "1"
+	}
+]

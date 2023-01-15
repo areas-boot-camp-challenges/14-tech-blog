@@ -2,34 +2,34 @@
 const { Model, DataTypes } = require("sequelize")
 
 // Database.
-const sequelize = require("../config/connection")
+const sequelize = require("../../config/connection")
 
 // Set up the model.
-class Post extends Model {}
+class Comment extends Model {}
 
 // Define the model.
-Post.init(
+Comment.init(
 	{
 		postId: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		commentId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		postTitle: {
-			type: DataTypes.STRING,
+		comment: {
+			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-		post: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		postAuthorId: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		postDate: {
+		commentDate: {
 			type: DataTypes.DATE,
+			allowNull: false,
+		},
+		userId: {
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 	},
@@ -38,9 +38,8 @@ Post.init(
 		timestamps: false,
 		freezeTableName: true,
 		underscored: false,
-		modelName: "Post",
-		tableName: "Post",
+		modelName: "Comment",
 	},
 )
 
-module.exports = Post
+module.exports = Comment
