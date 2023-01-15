@@ -32,7 +32,7 @@ userRouter.post("/user", async (req, res) => {
 		const newUser = await User.create(req.body)
 		// Create a session.
 		req.session.save( () => {
-			req.session.userId = user.userId
+			req.session.userId = newUser.userId
 			req.session.signedIn = true
 		})
 		// Return the user.
@@ -80,7 +80,28 @@ userRouter.patch("/user/:userId", async (req, res) => {
 // POST /api/user/sign-in (signInUser).
 userRouter.post("/user/sign-in", async (req, res) => {
 	try {
-		res.status(200).json("So far, so good!")
+		// Search for the user (-- by email).
+		const signedOutUser = await User.findOne({ where: { email: req.body.email }})
+		// If the user’s not found, return a 401 message.
+		if (!signedOutUser) {
+			res.status(401).send("Sorry, your email or password is incorrect. Try again.")
+			return
+		}
+		// Validate the user’s password.
+		const validPassword = await signedOutUser.validatePassword(req.body.password)
+		// If the passwords don’t match, return a 401 message. Else create a session.
+		if (!validPassword) {
+			res.status(401).send("Sorry, your email or password is incorrect. Try again.")
+			return
+		} else if (validPassword) {
+			req.session.save( () => {
+				req.session.userId = signedOutUser.userId
+				req.session.signedIn = true
+			})
+			// Return the user.
+			const user = await searchForUser(signedOutUser.userId)
+			res.status(200).json(user)
+		}
 	} catch (err) {
 		res.status(500).json(err)
 	}
@@ -89,7 +110,7 @@ userRouter.post("/user/sign-in", async (req, res) => {
 // POST /api/user/sign-out (signOutUser).
 userRouter.post("/user/sign-out", async (req, res) => {
 	try {
-		// If there’s a session, delete it. Else, return a 404 message.
+		// If there’s a session, delete it and redirect home. Else, return a 404 message.
 		if (req.session.signedIn) {
 			req.session.destroy( () => {
 				res.status(204).end()

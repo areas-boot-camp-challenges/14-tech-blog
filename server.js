@@ -66,7 +66,7 @@ const routes = require("./controllers")
 const sess = {
 	secret: process.env.EXPRESS_SECRET,
 	cookie: {
-		maxAge: 300000, // ** miliseconds?
+		maxAge: 1000 * 60 * 60 * 8, // 8 hrs
 		httpOnly: true,
 		secure: false,
 		sameSite: "strict",

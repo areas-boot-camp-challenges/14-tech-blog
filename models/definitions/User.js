@@ -9,8 +9,7 @@ const sequelize = require("../../config/connection")
 class User extends Model {
 	// Validate the user’s password.
 	async validatePassword(password) {
-		const validPassword = await bcrypt.compare(password, this.password)
-		return validPassword
+		return await bcrypt.compare(password, this.password)
 	}
 }
 
