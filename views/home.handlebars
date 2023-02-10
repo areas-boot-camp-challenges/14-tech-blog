@@ -1,14 +1,15 @@
-<p>Hello!</p>
-
 <p>{{signedIn}}</p>
 
 {{#each posts as |post|}}
 
-	<ul>
-		<li>{{post.postId}}</li>
-		<li>{{post.postTitle}}</li>
-		<li>{{post.post}}</li>
-		<li>{{post.postDate}}</li>
-	</ul>
+	<article class="p-4">
+		<h2 class="text-xl">{{post.postTitle}}</h2>
+		<section>
+			{{post.postDate}} by {{post.user.displayName}}
+		</section>
+		<section>
+			{{post.post}}
+		</section>
+	</article>
 
 {{/each}}

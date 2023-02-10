@@ -11,6 +11,7 @@ htmlRouter.get("/", async (req, res) => {
 			include: [
 				{
 					model: User,
+					as: "user",
 					attributes: [
 						"displayName",
 						"firstName",
@@ -19,7 +20,7 @@ htmlRouter.get("/", async (req, res) => {
 				},
 			],
 		})
-		const posts = postsRaw.map(post => post.toJSON())		
+		const posts = postsRaw.map(post => post.toJSON())
 		// Pass posts and session flag to template.
 		res.render("home", {
 			posts: posts,
