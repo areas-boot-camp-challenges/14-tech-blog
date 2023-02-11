@@ -82,6 +82,19 @@ postRouter.delete("/post/:postId", async (req, res) => {
 	}
 })
 
+// GET /api/:userId/posts (getUserPosts).
+postRouter.get("/:userId/posts", async (req, res) => {
+	try {
+		// Search for all posts.
+		const posts = await Post.findAll({ where: { "userId": req.params.userId }	})
+		posts.map(post => post.toJSON())
+		// Return the posts.
+		res.status(200).json(posts)
+	} catch (err) {
+		res.status(500).json(err)
+	}
+})
+
 // GET /api/posts (getPosts).
 postRouter.get("/posts", async (req, res) => {
 	try {

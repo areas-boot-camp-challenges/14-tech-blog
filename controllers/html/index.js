@@ -64,7 +64,8 @@ htmlRouter.get("/dashboard", async (req, res) => {
 			res.render("sign-in")
 		} else {
 			res.render("dashboard", {
-				"signedIn": req.session.signedIn,
+				userId: req.session.userId,
+				signedIn: req.session.signedIn,
 			})
 		}
 	} catch (err) {
