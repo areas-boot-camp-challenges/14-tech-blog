@@ -30,14 +30,14 @@ userRouter.post("/user", async (req, res) => {
 	try {
 		// Create the user.
 		const newUser = await User.create(req.body)
+		// Get the user.
+		const user = await searchForUser(newUser.userId)
 		// Create a session.
 		req.session.save( () => {
 			req.session.userId = newUser.userId
 			req.session.signedIn = true
+			res.status(200).json(user)
 		})
-		// Return the user.
-		const user = await searchForUser(newUser.userId)
-		res.status(200).json(user)
 	} catch (err) {
 		res.status(500).json(err)
 	}
@@ -94,13 +94,14 @@ userRouter.post("/user/sign-in", async (req, res) => {
 			res.status(401).send("Sorry, your email or password is incorrect. Try again.")
 			return
 		} else if (validPassword) {
+			// Get the user.
+			const user = await searchForUser(signedOutUser.userId)
+			// Create a session and return the user.
 			req.session.save( () => {
 				req.session.userId = signedOutUser.userId
 				req.session.signedIn = true
+				res.status(200).json(user)
 			})
-			// Return the user.
-			const user = await searchForUser(signedOutUser.userId)
-			res.status(200).json(user)
 		}
 	} catch (err) {
 		res.status(500).json(err)
