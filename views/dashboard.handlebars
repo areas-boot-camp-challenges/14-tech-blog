@@ -1,6 +1,10 @@
 <section class="grid grid-cols-1 justify-items-center gap-2 p-4">
 	<h2 class="text-xl">Dashboard</h2>
-	<section id="posts"></section>
+	{{#each posts as |post|}}
+		<article class="">
+			<h3 class="underline">{{post.postTitle}}</h2>
+		</article>
+	{{/each}}
 	<button id="new-post" class="w-64 border rounded-lg p-4">New Post</button>
 </section>
 
@@ -12,11 +16,6 @@
 <!-- ** -->
 
 <script>
-	// Display the user’s posts.
-	const posts = document.getElementById("posts")
-
-	
-
 	// Display the “Publish Post” form.
 	document.getElementById("new-post").addEventListener("click", () =>{
 		

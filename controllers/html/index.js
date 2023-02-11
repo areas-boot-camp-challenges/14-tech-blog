@@ -63,7 +63,10 @@ htmlRouter.get("/dashboard", async (req, res) => {
 		if (!req.session.signedIn) {
 			res.render("sign-in")
 		} else {
+			const postsRaw = await Post.findAll({ where: { "userId": req.session.userId } })
+			const posts = postsRaw.map(post => post.toJSON())
 			res.render("dashboard", {
+				posts: posts,
 				userId: req.session.userId,
 				signedIn: req.session.signedIn,
 			})
