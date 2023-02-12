@@ -1,1 +1,13 @@
-<p>Hello!</p>
+{{#each posts as |post|}}
+
+	<article class="p-4">
+		<h2 class="text-xl">{{post.postTitle}}</h2>
+		<section>
+			Published {{formatDate post.postDate}} by {{post.user.displayName}}
+		</section>
+		<section>
+			{{post.post}}
+		</section>
+	</article>
+
+{{/each}}
