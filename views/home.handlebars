@@ -3,7 +3,7 @@
 	<article class="p-4">
 		<h2 class="text-xl">{{post.postTitle}}</h2>
 		<section>
-			{{post.postDate}} by {{post.user.displayName}}
+			Published {{formatDate post.postDate}} by {{post.user.displayName}}
 		</section>
 		<section>
 			{{post.post}}
