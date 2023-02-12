@@ -1,16 +1,17 @@
-<form class="grid grid-cols-1 justify-items-center gap-2 p-4" id="sign-up-form">
+<section class="grid grid-cols-1 justify-items-center gap-2 p-4">
 	<h2 class="text-xl">Sign Up</h2>
-	<input class="w-3/4 sm:w-2/3 lg:w-1/2 p-4 border border-solid border-gray-300 text-black" type="text" placeholder="Display Name" id="display-name"><br>
-	<input class="w-3/4 sm:w-2/3 lg:w-1/2 p-4 border border-solid border-gray-300 text-black" type="text" placeholder="Email" id="email"><br>
-	<input class="w-3/4 sm:w-2/3 lg:w-1/2 p-4 border border-solid border-gray-300 text-black" type="password" placeholder="Password" id="password">
-	<button class="w-3/4 p-4" type="submit">Sign Up</button>
-	<p>Already have an account? <a href="/sign-in">Sign in</a>.</p>
-</form>
+	<input class="w-full sm:w-3/4 border rounded-lg p-4 border-gray-300 text-black" type="text" placeholder="Display Name" id="display-name">
+	<input class="w-full sm:w-3/4 border rounded-lg p-4 border-gray-300 text-black" type="text" placeholder="Email" id="email" autocomplete="off">
+	<input class="w-full sm:w-3/4 border rounded-lg p-4 border-gray-300 text-black" type="password" placeholder="Password" id="password" autocomplete="off">
+	<button id="sign-up" class="w-full sm:w-3/4 border rounded-lg p-4" type="submit">Sign Up</button>
+	<p>Already have an account? <a class="underline" href="/sign-in">Sign In</a></p>
+</section>
+
+<!-- ** -->
 
 <script>
 	// Sign up user.
-	document.getElementById("sign-up-form").addEventListener("submit", async (e) => {
-		e.preventDefault()
+	document.getElementById("sign-up").addEventListener("click", async () => {
 		// Get the first and last name, email, and password from the user.
 		const displayName = document.getElementById("display-name").value.trim()
 		const email = document.getElementById("email").value.trim()

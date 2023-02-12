@@ -27,6 +27,7 @@ htmlRouter.get("/", async (req, res) => {
 		// Pass posts and session flag to template.
 		res.render("home", {
 			posts: posts,
+			userId: req.session.userId,
 			signedIn: req.session.signedIn,
 		})
 	} catch (err) {
@@ -66,12 +67,17 @@ htmlRouter.get("/dashboard", async (req, res) => {
 		if (!req.session.signedIn) {
 			res.render("sign-in")
 		} else {
+			// Search for all posts.
 			const postsRaw = await Post.findAll({
 				where: {
 					"userId": req.session.userId,
 				},
+				order: [
+					["postDate", "DESC"],
+				],	
 			})
 			const posts = postsRaw.map(post => post.toJSON())
+			// Pass posts and session flag to template.
 			res.render("dashboard", {
 				posts: posts,
 				userId: req.session.userId,

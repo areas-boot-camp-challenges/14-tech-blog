@@ -1,8 +1,9 @@
 <section class="grid grid-cols-1 justify-items-center gap-2 p-4">
 	<h2 class="text-xl">Dashboard</h2>
 	{{#each posts as |post|}}
-		<article class="">
-			<h3 class="underline">{{post.postTitle}}</h2>
+		<article class="w-full sm:w-3/4 border rounded-lg p-4 grid grid-cols-2">
+			<section class="underline">{{post.postTitle}}</section>
+			<section class="justify-self-end">Published {{formatDate post.postDate}}</section>
 		</article>
 	{{/each}}
 	<button id="new-post" class="w-64 border rounded-lg p-4">New Post</button>
@@ -29,19 +30,19 @@
 		
 		const postTitleInput = document.createElement("input")
 		postTitleInput.id = "post-title"
-		postTitleInput.className = "w-3/4 sm:w-2/3 lg:w-1/2 p-4 border border-solid border-gray-300 text-black"
+		postTitleInput.className = "w-full sm:w-3/4 border rounded-lg p-4 border-gray-300 text-black"
 		postTitleInput.type = "text"
-		postTitleInput.placeholder = "Post Title"
+		postTitleInput.placeholder = "Enter a title"
 		
 		const postTextarea = document.createElement("textarea")
 		postTextarea.id = "post"
-		postTextarea.className = "w-3/4 sm:w-2/3 lg:w-1/2 p-4 border border-solid border-gray-300 text-black"
-		postTextarea.placeholder = "Post"
+		postTextarea.className = "w-full sm:w-3/4 border rounded-lg p-4 border-gray-300 text-black"
+		postTextarea.placeholder = "Say more..."
 		
 		const publishButton = document.createElement("button")
 		publishButton.innerHTML = "Publish"
 		publishButton.id = "publish"
-		publishButton.className = "w-3/4 sm:w-2/3 lg:w-1/2 p-4 border rounded-lg p-4"
+		publishButton.className = "w-full sm:w-3/4 border rounded-lg p-4"
 		
 		// Append the elements to the form.
 		const publishPostForm = document.getElementById("publish-post")
