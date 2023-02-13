@@ -16,6 +16,7 @@ module.exports = {
 		"ecmaVersion": "latest",
 	},
 	"plugins": [
+		"html",
 		"node",
 	],
 	"rules": {
