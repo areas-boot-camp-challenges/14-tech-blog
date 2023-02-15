@@ -18,7 +18,7 @@ const searchForPost = async (postId) => {
 	}
 }
 
-// POST /api/post (publishPost).
+// POST /api/post (addPost).
 postRouter.post("/post", async (req, res) => {
 	try {
 		// Create the post.
@@ -26,6 +26,19 @@ postRouter.post("/post", async (req, res) => {
 		// Return the post.
 		const post = await searchForPost(newPost.postId)
 		res.status(200).json(post)
+	} catch (err) {
+		res.status(500).json(err)
+	}
+})
+
+// GET /api/:userId/posts (getUserPosts).
+postRouter.get("/:userId/posts", async (req, res) => {
+	try {
+		// Search for all posts.
+		const posts = await Post.findAll({ where: { "userId": req.params.userId }	})
+		posts.map(post => post.toJSON())
+		// Return the posts.
+		res.status(200).json(posts)
 	} catch (err) {
 		res.status(500).json(err)
 	}
@@ -77,19 +90,6 @@ postRouter.delete("/post/:postId", async (req, res) => {
 		} else {
 			res.status(404).json(`Post ${req.params.postId} not found.`)
 		}
-	} catch (err) {
-		res.status(500).json(err)
-	}
-})
-
-// GET /api/:userId/posts (getUserPosts).
-postRouter.get("/:userId/posts", async (req, res) => {
-	try {
-		// Search for all posts.
-		const posts = await Post.findAll({ where: { "userId": req.params.userId }	})
-		posts.map(post => post.toJSON())
-		// Return the posts.
-		res.status(200).json(posts)
 	} catch (err) {
 		res.status(500).json(err)
 	}
