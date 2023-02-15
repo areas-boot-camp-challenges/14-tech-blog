@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "npm server.js",
+    "dev": "nodemon server.js",
     "tailwind": "npx tailwindcss -i ./src/input.css -o ./public/css/output.css --watch"
   },
   "repository": {
