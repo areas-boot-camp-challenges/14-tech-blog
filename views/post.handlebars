@@ -14,10 +14,14 @@
 				<section class="text-sm sm:text-md font-extralight">{{comment}}</section>
 			</article>
 		{{/each}}
-		<button id="add-button" class="border-b text-sm sm:text-md font-extralight mb-2">Add a Comment</button>
-	</section>
-	<section id="publish-form" class="grid grid-cols-2 gap-2" data-user-id="{{userId}}">
-	</section>
+			{{#if userId}}
+				<button id="add-button" class="border-b text-sm sm:text-md font-extralight mb-2">Add a Comment</button>
+			{{else}}
+				<p class="text-sm sm:text-md font-extralight">To add a comment, <a class="underline" href="../sign-up">sign up</a> or <a class="underline" href="../sign-in">sign in</a>.</p>
+			{{/if}}
+		</section>
+		<section id="publish-form" class="grid grid-cols-2 gap-2" data-user-id="{{userId}}">
+		</section>
 </article>
 
 <!-- ** -->
@@ -51,7 +55,6 @@
 				const comment = commentTextarea.value.trim()
 				const commentDate = new Date()
 				const userId = document.getElementById("publish-form").getAttribute("data-user-id")
-				console.log(postId, comment, commentDate, userId) // **
 				// Call the API.
 				if (postId && comment && commentDate && userId) {
 					const response = await fetch(`../api/post/${postId}/comment`, {

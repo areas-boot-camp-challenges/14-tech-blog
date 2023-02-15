@@ -86,7 +86,7 @@
 				})
 				// Handle the response.
 				if (response.ok) {
-					document.location.replace("/dashboard")
+					location.reload()
 				} else {
 					alert(response.statusText)
 				}
@@ -94,7 +94,7 @@
 		})
 		// Cancel.
 		document.getElementById("cancel").addEventListener("click", () => {
-			document.location.replace("/dashboard")
+			location.reload()
 		})
 	})
 
@@ -127,7 +127,7 @@
 					})
 					// Handle the response.
 					if (response.ok) {
-						document.location.replace("/dashboard")
+						location.reload()
 					} else {
 						alert(response.statusText)
 					}
@@ -135,7 +135,7 @@
 			})
 			// Cancel.
 			document.getElementById("cancel").addEventListener("click", () => {
-				document.location.replace("/dashboard")
+				location.reload()
 			})			
 			// Delete.
 			document.getElementById("delete").addEventListener("click", async () => {
@@ -147,7 +147,7 @@
 					})
 					// Handle the response.
 					if (response.ok) {
-						document.location.replace("/dashboard")
+						location.reload()
 					} else {
 						alert(response.statusText)
 					}
