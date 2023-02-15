@@ -1,7 +1,7 @@
 // Dependencies.
 const htmlRouter = require("express").Router()
 
-const { User, Post } = require("../../models")
+const { User, Post, Comment } = require("../../models")
 
 // GET / route (renderHome).
 htmlRouter.get("/", async (req, res) => {
@@ -24,9 +24,56 @@ htmlRouter.get("/", async (req, res) => {
 			],
 		})
 		const posts = postsRaw.map(post => post.toJSON())
-		// Pass posts and session flag to template.
+		// Pass posts, user ID, and session flag to template.
 		res.render("home", {
 			posts: posts,
+			userId: req.session.userId,
+			signedIn: req.session.signedIn,
+		})
+	} catch (err) {
+		res.status(500).json(err)
+	}
+})
+
+// GET /post/:postId route (renderPost).
+htmlRouter.get("/post/:postId", async (req, res) => {
+	try {
+		// Search for a post.
+		const postRaw = await Post.findOne({
+			where: {
+				"postId": req.params.postId,
+			},
+			include: [
+				{
+					model: User,
+					as: "user",
+					attributes: [
+						"displayName",
+						"firstName",
+						"lastName",
+					],
+				},
+				{
+					model: Comment,
+					as: "comment",
+					include: [
+						{
+							model: User,
+							as: "user",
+							attributes: [
+								"displayName",
+								"firstName",
+								"lastName",
+							],
+						},
+					],
+				},
+			],
+		})
+		const post = postRaw.toJSON()
+		// Pass post, user ID, and session flag to template.
+		res.render("post", {
+			post: post,
 			userId: req.session.userId,
 			signedIn: req.session.signedIn,
 		})
@@ -77,7 +124,7 @@ htmlRouter.get("/dashboard", async (req, res) => {
 				],	
 			})
 			const posts = postsRaw.map(post => post.toJSON())
-			// Pass posts and session flag to template.
+			// Pass posts, user ID, and session flag to template.
 			res.render("dashboard", {
 				posts: posts,
 				userId: req.session.userId,
