@@ -82,5 +82,7 @@
 		})
 	}
 	// Add a new comment.
-	publishAPostOrComment("add", "comment")
+	if (document.getElementById("add-button")) {
+		publishAPostOrComment("add", "comment")
+	}
 </script>
